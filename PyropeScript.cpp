@@ -12,24 +12,40 @@
 * limitations under the License.
 */
 #include <iostream>
+#include <string>
+#include <vector>
 
 #include "allocator.hpp"
+#include "tokenizer.hpp"
 
 using namespace std;
 
 int main() {
 
-	Allocator alc;
+	while (true) {
 
-	alc.reserve(10);
+		string source, line = "START";
 
-	auto& mem1 = alc.ialloc(4);
-	++mem1;
-	mem1.fill(0x21);
-	mem1.hex(cout); cout << endl;
-	mem1.fill(0x44);
-	mem1.hex(cout); cout << endl;
-	--mem1;
-	
+		cout << "Source code:\nvvvvvvvvvv" << endl;
+
+		while (getline(cin, line) && line != "END") {
+			source += line + '\n';
+		}
+
+		cout << "^^^^^^^^^^^^\n" << endl;
+
+		vector<Token> tokens;
+		NONE_OR_TRACEBACK res = tokenize(source, tokens);
+		if (res.is_traceback) {
+			cout << res.error << endl;
+		}
+
+		for (Token token : tokens) {
+			cout << token << endl;
+		}
+
+		cout << '\n\n';
+
+	}
 	return 0;
 }
