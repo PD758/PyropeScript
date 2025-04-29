@@ -325,9 +325,9 @@ NONE_OR_TRACEBACK tokenize(string& source, vector<Token>& tokens) {
 							char_val = '\r'; break;
 						default:
 							char_val = source[current];
-							current++;
 							break;
 						}
+						current++;
 					}
 					else {
 						addToken(tokens, TokenType::UNKNOWN, source.substr(tok_start, current - tok_start), line, column);
@@ -355,7 +355,7 @@ NONE_OR_TRACEBACK tokenize(string& source, vector<Token>& tokens) {
 			}
 			else {
 				addToken(tokens, TokenType::UNKNOWN, source.substr(tok_start, current - tok_start), line, column);
-				return NONE_OR_TRACEBACK({line, column, "SyntaxError: Unterminated char literal"}, TRACEBACK_ERROR);
+				return NONE_OR_TRACEBACK({line, column, "SyntaxError: Char literal must contain only one single character"}, TRACEBACK_ERROR);
 			}
 			continue;
 		}
