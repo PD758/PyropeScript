@@ -13,6 +13,23 @@
 */
 #include <iostream>
 
+#include "allocator.hpp"
+
+using namespace std;
+
 int main() {
-    std::cout << "Hello World!\n";
+
+	Allocator alc;
+
+	alc.reserve(10);
+
+	auto& mem1 = alc.ialloc(4);
+	++mem1;
+	mem1.fill(0x21);
+	mem1.hex(cout); cout << endl;
+	mem1.fill(0x44);
+	mem1.hex(cout); cout << endl;
+	--mem1;
+	
+	return 0;
 }
