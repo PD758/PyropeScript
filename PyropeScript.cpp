@@ -44,7 +44,7 @@ int main() {
 			cout << token << endl;
 		}
 
-		cout << '\n\n';
+		cout << "\n\n";
 
 	}
 	return 0;

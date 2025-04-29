@@ -26,7 +26,7 @@ using namespace std;
 
 enum class TokenType {
 	Type,			// NONE, CHAR, UCHAR, INT{2,4,8,16,32}, UINT{2,4,8,16,32}, INT, UINT, FLOAT, DOUBLE, STRING, USTRING, LIST
-	Keyword,		// IF, WHILE, FOR, IMPORT, RETURN
+	Keyword,		// IF, WHILE, FOR, IMPORT, RETURN, FUNCTION
 	Identifier,		// variable name, etc.
 	LiteralString,  // "string"
 	LiteralChar,	// 'c'
@@ -146,6 +146,7 @@ TokenType handleKeyword(const string& lexeme) {
 		{"FOR",		TokenType::Keyword},
 		{"IMPORT",	TokenType::Keyword},
 		{"RETURN",	TokenType::Keyword},
+		{"FUNCTION",TokenType::Keyword},
 	// Literals
 		{"True",	TokenType::LiteralBool},
 		{"False",	TokenType::LiteralBool}
