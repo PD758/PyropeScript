@@ -27,7 +27,7 @@ namespace _pyrope {
 	_tag_traceback TRACEBACK_ERROR;
 
 	template<typename ReturnT>
-	// Traceback error string or return value
+	// Traceback error or return value
 	struct RTRACEBACK {
 		union {
 			ReturnT value;

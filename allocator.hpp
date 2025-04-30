@@ -143,21 +143,21 @@ struct Allocator {
         else {
             size_t index = *free_pool.begin();
             free_pool.erase(free_pool.begin());
-			memory_pool[index].realloc_(size);
-			return index;
+            memory_pool[index].realloc_(size);
+            return index;
         }
     }
     RawMemory& ialloc(size_t size) {
-		size_t index = alloc(size);
-		return memory_pool[index];
+        size_t index = alloc(size);
+        return memory_pool[index];
     }
     void gc() {
-		for (size_t i = 0; i < memory_pool.size(); i++) {
-			if (memory_pool[i].ref_count == 0) {
-				memory_pool[i].free_();
-				free_pool.insert(i);
-			}
-		}
+        for (size_t i = 0; i < memory_pool.size(); i++) {
+            if (memory_pool[i].ref_count == 0) {
+                memory_pool[i].free_();
+                free_pool.insert(i);
+            }
+        }
     }
 };
 

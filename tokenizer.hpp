@@ -32,6 +32,7 @@ namespace _pyrope {
 		LiteralString,  // "string"
 		LiteralChar,	// 'c'
 		LiteralNumber,  // 1234567890
+		LiteralFloat,   // 123.456
 		LiteralBool,	// True/False
 		Operator,		// +, -, *, /, //, %, **, >, >=, <, <=, |, ^, &, ==, !=, ||, &&
 		Assignment,		// =, &=, +=, -=, *=, /=, %=, //=
@@ -198,7 +199,6 @@ namespace _pyrope {
 			// number literals
 			if (isdigit(c)) {
 				// TODO: hex, octal, binary
-				bool is_float = false;
 				while (current < source.length() &&
 					isdigit(source[current])) {
 					current++;
@@ -206,8 +206,14 @@ namespace _pyrope {
 				if (current < source.length() && source[current] == '.') {
 					if (current + 1 < source.length()
 						&& isdigit(source[current + 1])) {
-						is_float = true;
+						// float literal
 						current++;
+						while (current < source.length() && isdigit(source[current])) {
+							current++;
+						}
+						string lexeme = source.substr(tok_start, current - tok_start);
+						addToken(tokens, TokenType::LiteralFloat, lexeme, line, column);
+						continue;
 					}
 					else {
 						// this may be .method() call
@@ -431,6 +437,9 @@ ostream& operator<<(ostream& os, TokenType type) {
 		break;
 	case TokenType::LiteralNumber:
 		os << "LiteralNumber";
+		break;
+	case TokenType::LiteralFloat:
+		os << "LiteralFloat";
 		break;
 	case TokenType::LiteralBool:
 		os << "LiteralBool";
