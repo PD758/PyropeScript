@@ -34,8 +34,8 @@ namespace _pyrope {
 		LiteralNumber,  // 1234567890
 		LiteralFloat,   // 123.456
 		LiteralBool,	// True/False
-		Operator,		// +, -, *, /, //, %, **, >, >=, <, <=, |, ^, &, ==, !=, ||, &&
-		Assignment,		// =, &=, +=, -=, *=, /=, %=, //=
+		Operator,		// +, -, *, /, //, %, **, >, >=, <, <=, |, ^, &, ==, !=, ||, &&, !
+		Assignment,		// =, &=, +=, -=, *=, /=, %=, //=, **=
 		Punctuator,		// ; : , [ ] ( ) .
 		Follow,			// ->
 		INDENT,
@@ -309,6 +309,9 @@ namespace _pyrope {
 			// check operators
 			if (source.substr(current, 3) == "//=") {
 				addToken(tokens, TokenType::Assignment, "//=", line, column); current += 3; continue;
+			}
+			if (source.substr(current, 3) == "**=") {
+				addToken(tokens, TokenType::Assignment, "**=", line, column); current += 3; continue;
 			}
 			if (source.substr(current, 2) == "//") {
 				addToken(tokens, TokenType::Operator, "//", line, column); current += 2; continue;
