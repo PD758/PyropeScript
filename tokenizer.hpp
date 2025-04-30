@@ -27,7 +27,7 @@ using namespace std;
 namespace _pyrope {
 	enum class TokenType {
 		Type,			// NONE, CHAR, UCHAR, INT{2,4,8,16,32}, UINT{2,4,8,16,32}, INT, UINT, FLOAT, DOUBLE, STRING, USTRING, LIST
-		Keyword,		// IF, WHILE, FOR, IMPORT, RETURN, FUNCTION
+		Keyword,		// IF, WHILE, FOR, IMPORT, RETURN, FUNCTION, ELSE, BREAK, CONTINUE
 		Identifier,		// variable name, etc.
 		LiteralString,  // "string"
 		LiteralChar,	// 'c'
@@ -87,6 +87,9 @@ namespace _pyrope {
 			{"IMPORT",	TokenType::Keyword},
 			{"RETURN",	TokenType::Keyword},
 			{"FUNCTION",TokenType::Keyword},
+			{"ELSE",	TokenType::Keyword},
+			{"BREAK",	TokenType::Keyword},
+			{"CONTINUE",TokenType::Keyword},
 		// Literals
 			{"True",	TokenType::LiteralBool},
 			{"False",	TokenType::LiteralBool}
