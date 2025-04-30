@@ -98,7 +98,7 @@ namespace _pyrope {
 
 	NONE_OR_TRACEBACK tokenize(string& source, vector<Token>& tokens) {
 		size_t current = 0;
-		size_t line = 0;
+		size_t line = 1;
 		stack<size_t> indentStack;
 		indentStack.push(0);
 
@@ -465,6 +465,6 @@ ostream& operator<<(ostream& os, TokenType type) {
 	return os;
 }
 ostream& operator<<(ostream& os, const Token& token) {
-	os << token.type << ':' << token.line << ':' << token.column << ':' << token.lexeme;
+	os << token.line << ':' << token.column << '\t' << token.type << "\t\"" << token.lexeme << "\"";
 	return os;
 }
