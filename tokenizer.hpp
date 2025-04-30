@@ -32,7 +32,7 @@ enum class TokenType {
 	LiteralChar,	// 'c'
 	LiteralNumber,  // 1234567890
 	LiteralBool,	// True/False
-	Operator,		// +, -, *, /, //, %, **, >, >=, <, <=, |, ^, &, ==, !=
+	Operator,		// +, -, *, /, //, %, **, >, >=, <, <=, |, ^, &, ==, !=, ||, &&
 	Assignment,		// =, &=, +=, -=, *=, /=, %=, //=
 	Punctuator,		// ; : , [ ] ( ) .
 	Follow,			// ->
@@ -399,11 +399,16 @@ NONE_OR_TRACEBACK tokenize(string& source, vector<Token>& tokens) {
 			addToken(tokens, TokenType::Operator, "!=", line, column); current += 2; continue;
 		}
 		if (source.substr(current, 2) == "&&") {
-			addToken(tokens, TokenType::Operator, "||", line, column); current += 2; continue;
+			addToken(tokens, TokenType::Operator, "&&", line, column); current += 2; continue;
 		}
 		if (source.substr(current, 2) == "||") {
 			addToken(tokens, TokenType::Operator, "||", line, column); current += 2; continue;
 		}
+		if (source.substr(current, 2) == ">=") {
+			addToken(tokens, TokenType::Operator, ">=", line, column); current += 2; continue;
+		}
+		if (source.substr(current, 2) == "<=") {
+			addToken(tokens, TokenType::Operator, "<=", line, column); current += 2; continue;
 		
 		switch (c) {
 		case '+':
