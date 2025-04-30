@@ -43,6 +43,8 @@ namespace _pyrope {
 }
 using _pyrope::TRACEBACK, _pyrope::RTRACEBACK, _pyrope::TRACEBACK_ERROR, _pyrope::NONE_OR_TRACEBACK;
 
+#include <iostream>
+
 ostream& operator<<(ostream& os, _pyrope::TRACEBACK tb) {
 	os << "Traceback(" << tb.message << " at line " << tb.line << " column " << tb.column << ')';
 	return os;
